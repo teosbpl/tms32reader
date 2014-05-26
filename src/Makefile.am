@@ -1,0 +1,15 @@
+bin_PROGRAMS = tms32_reader
+tms32_reader_SOURCES = tms32_reader.cpp unilib.c TFloatSignal.cpp TTms32Reader.cpp extalg.cpp
+tms32_reader_CXXFLAGS = -Wunused-result -fpermissive
+tms32_reader_CPPFLAGS = -Wunused-result
+ACLOCAL_AMFLAGS = '-I m4'
+
+if DEBUG
+AM_CFLAGS = -g3 -O0
+AM_CXXFLAGS = -g3 -O0 -Wunused-result -fpermissive
+else
+AM_CFLAGS = -O2
+AM_CXXFLAGS = -O2 -Wunused-result -fpermissive
+endif
+
+
