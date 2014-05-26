@@ -1,3 +1,4 @@
+AM_CPPFLAGS = -I$(top_srcdir)/include
 bin_PROGRAMS = tms32_reader
 tms32_reader_SOURCES = tms32_reader.cpp unilib.c TFloatSignal.cpp TTms32Reader.cpp extalg.cpp
 tms32_reader_CXXFLAGS = -Wunused-result -fpermissive
