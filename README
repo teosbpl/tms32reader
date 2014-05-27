@@ -1,0 +1,15 @@
+
+
+  tms32_reader is a minimal project, which you can use to access TMS32 / Poly 5 files, 
+  used e.g. by Porti hospital measurement system.
+  Use at your own risk and do not expect much.
+  MAT file export support requires installation of MATIO library, version 1.5.2 or higher.
+  MATIO can be found at http://sourceforge.net/projects/matio/
+  It may be cloned by  git clone git://git.code.sf.net/p/matio/matio
+  Build system uses automake tools, version 1.10 or higher.
+  Build sequence:
+  aclocal
+  autoconf
+  ./configure [--enable-mat]
+  make 
+  make install

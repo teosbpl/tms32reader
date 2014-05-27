@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
   char call[] = "all";
   char cchannel[] = "channel";
   char cheaders[] = "headers";
-
+  fprintf(stdout,"tms32_reader Copyright by Teodor Buchner, Warsaw University of Technology @ 2014\n");
 
 //  if( parse(argc,argv,"ar", NULL) )    use_autoregression = true;
   if( parse(argc,argv,cif, buffer) )
