@@ -48,25 +48,27 @@ AC_ARG_WITH(mat,
 if test "$with_mat" = "no"; then   
     echo "Disabling Matlab/Octave support"
 else
+    echo "Enabling Matlab/Octave support"
     AC_CHECK_HEADERS(matio.h,
-        AC_CHECK_LIB(matio, close,[
+        AC_CHECK_LIB(matio, Mat_CreateVer,[
             AC_DEFINE(HAVE_MATIO,[],[Do we have MATIO])
             if test "x${MAT_DIR}" != "x"; then
                 MAT_CFLAGS="-I${MAT_DIR}/include"
                 MAT_LIBS="-L${MAT_DIR}/lib -lmatio"
+                LDFLAGS="$LDFLAGS $MAT_LIBS"
             else
-                MAT_LIBS="-lmatio"
+                MAT_LIBS="-L/usr/local/lib -lmatio"
             fi]))
 fi
 
-AC_SUBST(MAT_CFLAGS)
-AC_SUBST(MAT_LIBS)
 
 
 CPPFLAGS=${_cppflags}
 LDFLAGS=${_ldflags}
 
 
+AC_SUBST([MAT_CFLAGS])
+AC_SUBST([MAT_LIBS])
 
 
 AC_OUTPUT
