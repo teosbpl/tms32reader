@@ -50,6 +50,17 @@ if test "$with_mat" = "no"; then
 else
     echo "Enabling Matlab/Octave support"
     AC_CHECK_HEADERS(matio.h,
+        AC_CHECK_LIB(hdf5, H5_init_library,
+
+        AC_CHECK_LIB(matio, Mat_CreateVer,[
+            AC_DEFINE(HAVE_MATIO,[],[Do we have MATIO])
+            if test "x${MAT_DIR}" != "x"; then
+                MAT_CFLAGS="-I${MAT_DIR}/include"
+                MAT_LIBS="-L${MAT_DIR}/lib -lmatio -lhdf5"
+                LDFLAGS="$LDFLAGS $MAT_LIBS"
+            else
+                MAT_LIBS="-L/usr/local/lib -lmatio -lhdf5"
+            fi],[],-lhdf5),
         AC_CHECK_LIB(matio, Mat_CreateVer,[
             AC_DEFINE(HAVE_MATIO,[],[Do we have MATIO])
             if test "x${MAT_DIR}" != "x"; then
@@ -58,11 +69,12 @@ else
                 LDFLAGS="$LDFLAGS $MAT_LIBS"
             else
                 MAT_LIBS="-L/usr/local/lib -lmatio"
-            fi]))
+            fi],[],[]),[]
+))
 fi
 
-
-
+#
+#AC_CHECK_LIB (library, function, [action-if-found], [action-if-not-found], [other-libraries
 CPPFLAGS=${_cppflags}
 LDFLAGS=${_ldflags}
 
