@@ -8,8 +8,11 @@
   It may be cloned by  git clone git://git.code.sf.net/p/matio/matio
   Build system uses automake tools, version 1.10 or higher.
   Build sequence:
+  libtoolize --force
   aclocal
+  autoheader
+  automake --force-missing --add-missing
   autoconf  
   ./configure [--with-mat[=/usr/local]]
   make 
-  make install
+  sudo make install
