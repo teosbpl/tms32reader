@@ -1,8 +1,10 @@
 //---------------------------------------------------------------------------
 #include <TTms32Reader.h>
+#include <TMatlabSave.h>
 #include "unilib.h"
 #include <fstream>
 #include <string.h>
+
 
 #pragma hdrstop
 //---------------------------------------------------------------------------
@@ -37,7 +39,8 @@ int main(int argc, char* argv[])
   reader.LoadSignals();
   if( parse(argc,argv,call, NULL) )
   {
-    reader.DumpSignals();
+    TMatlabSave::DoSave(reader.getAllSignals(),output_file.c_str());
+    //reader.DumpSignals();
   }
   if( parse(argc,argv,cchannel, buffer) )
   {//-channel 0:0:1000
